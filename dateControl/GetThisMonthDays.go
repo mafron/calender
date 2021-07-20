@@ -1,7 +1,7 @@
 package dateControl
 
 import (
-	"dateControl/domain"
+	"calender/domain"
 	"time"
 )
 

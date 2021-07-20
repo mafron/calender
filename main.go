@@ -1,7 +1,7 @@
 package main
 
 import (
-	"dateControl/dateControl"
+	"calender/dateControl"
 	"net/http"
 	"text/template"
 	"time"
