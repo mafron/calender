@@ -2,25 +2,21 @@ package main
 
 import (
 	"calender/dateControl"
-	"net/http"
-	"text/template"
 	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	http.HandleFunc("/", dataHandler)
-	http.ListenAndServe(":8080", nil)
-}
+	router := gin.Default()
 
-func dataHandler(w http.ResponseWriter, r *http.Request) {
 	t := time.Now()
 	days := dateControl.GetThisMonthDays(t)
 
-	tmpl, err := template.ParseFiles("templates/index.html")
-	if err != nil {
-		panic(err.Error())
-	}
-	if err := tmpl.Execute(w, days); err != nil {
-		panic(err.Error())
-	}
+	router.LoadHTMLGlob("templates/*.html")
+	router.GET("/", func(ctx *gin.Context) {
+		ctx.HTML(200, "calender.html", days)
+	})
+
+	router.Run()
 }
