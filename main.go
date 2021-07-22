@@ -28,5 +28,10 @@ func main() {
 		ctx.Redirect(302, "/")
 	})
 
+	router.GET("/today", func(ctx *gin.Context) {
+		t = time.Now()
+		ctx.Redirect(302, "/")
+	})
+
 	router.Run()
 }
